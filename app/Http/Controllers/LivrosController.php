@@ -7,6 +7,7 @@ use App\Models\Livro;
 use App\Models\Genero;
 use App\Models\Autor;
 use App\Models\Editora;
+use Illuminate\Support\Facades\Gate;
 
 class LivrosController extends Controller
 {
@@ -86,12 +87,12 @@ public function show (Request $request){
 public function edit (Request $request){
    $idLivro=$request->id;
    $idEditora=$request->id;
-
+   $livro=Livro::where('id_livro',$idLivro)->first();
+if(Gate::allows('atualizar-livro',$livro)){
   $generos=Genero::all();
   $autores=Autor::all();
   $editoras=Editora::all();
-
-   $livro=Livro::where('id_livro',$idLivro)->first();
+   
    $autoresLivro=[];
    foreach ($livro->autores as $autor) {
       $autoresLivro[]=$autor->id_autor;
@@ -111,6 +112,10 @@ public function edit (Request $request){
       'editoras'=>$editoras
      
 ]);
+ }
+   else{
+    return redirect()->route('livros.index')->with('mensagem','Não tem permissão para aceder á área pretendida');
+   }
 }
 
 public function update(Request $request){
@@ -158,6 +163,12 @@ public function delete(Request $request){
    return view ('livros.delete',['livro'=>$livro]);
    
 }
-
+public function boot()
+{
+  $this->registerPolicies();
+  Gate::define('atualizar-livro', function($user, $livro)){
+    return $user->id==$livro->id_user;
+  });
+}
 
 }

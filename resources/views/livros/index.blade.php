@@ -6,7 +6,7 @@
 <li>
 	<a href="{{route('livros.show', ['id'=>$livro->id_livro])}}">
 	
-	<h4>{{$livro->titulo}}</h4></a></li>
+	{{$livro->titulo}}</li>
 
 	
 @endforeach

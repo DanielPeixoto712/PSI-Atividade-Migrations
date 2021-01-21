@@ -43,7 +43,7 @@ Autor(es):
 <br><br>
 Sinopse: <textarea type="text" name="sinopse"></textarea> <br><br>
 
-<h4>Sua id:</h4> <input type="text" name="id_user"><br><br>
+<h4 style="display: none">Sua id:</h4> <input style="display: none" type="text"  name="id_user" value="{{Auth::user()->id}}"><br><br>
 <br>
 
 <br>

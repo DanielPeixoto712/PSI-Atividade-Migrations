@@ -113,5 +113,6 @@ Route::get('/autores/{id}/delete', 'App\Http\Controllers\AutoresController@delet
 Route::delete('/autores', 'App\Http\Controllers\AutoresController@destroy')->name('autores.destroy')->middleware('auth');
 Auth::routes();
 
-//Home
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('');
+//home
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -21,11 +21,11 @@
                         </div>
                     @endif
 
-                    <h4 align="center">{{ __('Você fez Login!') }}</h4>
-                    <h7>A sua ID é :
+                    <h4 align="center">{{ __('Você efetuou o Login!') }}</h4>
+                    <h6>A sua ID é :
                         <h3>{{Auth::user()->id}}</h3>
                         
-                    </h7>
+                    </h6>
 
                 </div>
             </div>
